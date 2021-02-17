@@ -44,7 +44,7 @@ def repeat(n, func, *args):
     for _ in range(n):
         func(*args)
 
-def savepage(name):
+def savepage(name, n):
     name = name+'.html'
     def sendkeys():
         repeat( 2, pyautogui.press, 'esc' )
@@ -56,12 +56,12 @@ def savepage(name):
         pyautogui.write(name)
         sleep(0.2)
         repeat( 2, pyautogui.press, 'enter' )
-        sleep(0.5)
+        sleep(1.1)
 
     while not os.path.exists('/root/Downloads/'+name):
         sendkeys()
 
-    print('Downloading page...')
+    print('Downloading page {0}...'.format(n))
 
 def replaceverify():
     def go_on():
@@ -97,7 +97,7 @@ def run():
     for n in range( len(links) ):
         fire.get(links[n])
         name = num + 'pagina '+str(n)
-        savepage( name )
+        savepage( name, n )
 
 def execution():
     if login():
